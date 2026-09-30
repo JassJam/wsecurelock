@@ -1,0 +1,45 @@
+cmake_minimum_required(VERSION 3.27)
+
+message(STATUS "CMake version: ${CMAKE_VERSION}")
+message(STATUS "Using C++ standard: ${CMAKE_CXX_STANDARD}")
+
+#
+
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
+
+#
+
+include(project/Policies)
+
+project(
+    cmake_initializer
+    VERSION "${THIS_PROJECT_VERSION}"
+    DESCRIPTION ${THIS_PROJECT_DESCRIPTION}
+    HOMEPAGE_URL ${THIS_PROJECT_HOMEPAGE_URL}
+    LANGUAGES CXX)
+
+message(
+    STATUS "Configuring ${THIS_PROJECT_PRETTY_NAME} v${THIS_PROJECT_VERSION}")
+
+if(BUILD_TESTING)
+    include(CTest)
+    enable_testing()
+endif()
+
+include(PreventInSourceBuilds)
+
+include(project/ProjectConfig)
+include(project/Initialization)
+
+add_subdirectory(samples)
+
+register_package_config(
+    NAME
+    ${THIS_PROJECT_NAMESPACE}
+    NAMESPACE
+    ${THIS_PROJECT_NAMESPACE}
+    EXPORT_SET
+    "${THIS_PROJECT_NAMESPACE}Targets"
+    COMPATIBILITY
+    SameMajorVersion)

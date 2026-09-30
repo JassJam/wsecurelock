@@ -1,0 +1,95 @@
+Checks: >
+  -*,
+  clang-diagnostic-*,
+  misc-*,
+  -misc-const-correctness,
+  -misc-unused-parameters,
+  -misc-non-private-member-variables-in-classes,
+  -misc-no-recursion,
+  -misc-use-anonymous-namespace,
+  -misc-include-cleaner,
+  -misc-confusable-identifiers,
+  bugprone-*,
+  -bugprone-forward-declaration-namespace,
+  -bugprone-implicit-widening-of-multiplication-result,
+  -bugprone-unused-*,
+  modernize-*,
+  -modernize-use-trailing-return-type,
+  -modernize-avoid-c-arrays,
+  performance-faster-string-find,
+  performance-inefficient-algorithm,
+  performance-inefficient-string-concatenation,
+  performance-inefficient-vector-operation,
+  performance-noexcept-destructor,
+  performance-noexcept-move-constructor,
+  performance-noexcept-swap,
+  performance-move-const-arg,
+  performance-move-constructor-init,
+  performance-type-promotion-in-math-fn,
+  performance-trivially-destructible,
+  performance-template-virtual-member-function,
+  performance-no-automatic-move,
+  readability-use-std-min-max,
+  readability-duplicate-include,
+  readability-delete-null-pointer,
+  readability-ambiguous-smartptr-reset-call,
+  readability-avoid-nested-conditional-operator,
+  readability-const-return-type,
+  readability-convert-member-functions-to-static,
+  readability-suspicious-call-argument,
+  readability-string-compare,
+  readability-make-member-function-const,
+  readability-misleading-indentation,
+  readability-named-parameter,
+  readability-non-const-parameter,
+  readability-function-size,
+  readability-else-after-return,
+  readability-implicit-bool-conversion,
+  readability-inconsistent-declaration-parameter-name,
+  readability-math-missing-parentheses,
+  readability-misplaced-array-index,
+  readability-redundant-preprocessor,
+  readability-redundant-function-ptr-dereference,
+  readability-static-accessed-through-instance,
+  readability-simplify-boolean-expr,
+  readability-reference-to-constructed-temporary,
+  readability-identifier-naming,
+  readability-redundant-string-init
+
+WarningsAsErrors:    '*'
+HeaderFileExtensions:         ['', 'h','hh','hpp','hxx']
+ImplementationFileExtensions: ['c','cc','cpp','cxx']
+
+CheckOptions:
+  - key:             readability-identifier-naming.ClassCase
+    value:           CamelCase
+  - key:             readability-identifier-naming.EnumCase
+    value:           CamelCase
+  - key:             readability-identifier-naming.FunctionCase
+    value:           CamelCase
+  - key:             readability-identifier-naming.MemberCase
+    value:           CamelCase
+  - key:             readability-identifier-naming.PrivateMemberPrefix
+    value:           m_
+  - key:             readability-identifier-naming.ParameterCase
+    value:           camelBack
+  - key:             readability-identifier-naming.UnionCase
+    value:           CamelCase
+  - key:             readability-identifier-naming.VariableCase
+    value:           camelBack
+  - key:             readability-identifier-naming.GlobalVariablePrefix
+    value:           g_
+  - key:             readability-identifier-naming.StaticVariablePrefix
+    value:           s_
+  - key:             readability-identifier-naming.ConstantPrefix
+    value:           ''
+  - key:             readability-identifier-naming.EnumConstantPrefix
+    value:           ''
+  - key:             modernize-use-default-member-init.UseAssignment
+    value:           1
+  - key:             modernize-use-nullptr
+    value:           1
+  - key:             readability-function-size.LineThreshold
+    value:           60
+  - key:             readability-function-size.ParameterThreshold
+    value:           6

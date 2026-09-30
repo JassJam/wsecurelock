@@ -1,0 +1,26 @@
+when:
+  - event: tag
+
+steps:
+
+####################
+# RELEASE PIPELINE #
+####################
+
+  # Linux / Clang - x86_64
+  - name: build-unixlike-x86_64-clang-release
+    image: dockcross/linux-x64-clang
+    commands:
+      - cmake -S . -B build/unixlike-x86_64-clang-release --preset unixlike-x86_64-clang-release
+      - cmake --build build/unixlike-x86_64-clang-release --config Release
+    when:
+    - event: tag
+
+  # Emscripten
+  - name: build-emscripten-release
+    image: dockcross/web-wasm
+    commands:
+      - cmake -S . -B build/emscripten-release --preset emscripten-release
+      - cmake --build build/emscripten-release --config Release
+    when:
+      - event: tag
