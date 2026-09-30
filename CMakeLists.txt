@@ -13,7 +13,7 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
 include(project/Policies)
 
 project(
-    cmake_initializer
+    wsecurelock
     VERSION "${THIS_PROJECT_VERSION}"
     DESCRIPTION ${THIS_PROJECT_DESCRIPTION}
     HOMEPAGE_URL ${THIS_PROJECT_HOMEPAGE_URL}
@@ -32,7 +32,7 @@ include(PreventInSourceBuilds)
 include(project/ProjectConfig)
 include(project/Initialization)
 
-add_subdirectory(samples)
+add_subdirectory(project)
 
 register_package_config(
     NAME
