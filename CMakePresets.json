@@ -18,7 +18,8 @@
         "THIS_PROJECT_NAMESPACE": "WSecureLock",
         "THIS_PROJECT_DESCRIPTION": " Wayland screen lock utility inspired by xsecurelock ",
         "THIS_PROJECT_HOMEPAGE_URL": "https://codeberg.org/JassJam/wsecurelock",
-        "THIS_PROJECT_LICENSE": "MIT"
+        "THIS_PROJECT_LICENSE": "MIT",
+        "PACKAGE_MANAGERS": "SPM"
       }
     },
     {

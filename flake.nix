@@ -80,6 +80,13 @@
                 git
                 cacert
                 ccache
+
+                #
+                pam
+                wayland
+                wayland-scanner
+                wayland-protocols
+                libxkbcommon
               ]
               ++ tc.extra;
 

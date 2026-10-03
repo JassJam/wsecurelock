@@ -1,4 +1,5 @@
 include(${CMAKE_CURRENT_LIST_DIR}/Sources.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/Dependencies.cmake)
 
 register_executable(
         wsecurelock
@@ -8,4 +9,6 @@ register_executable(
         NAMESPACE
         ${THIS_PROJECT_NAMESPACE}
         EXPORT_SET
-        "${THIS_PROJECT_NAMESPACE}Targets")
+        "${THIS_PROJECT_NAMESPACE}Targets"
+        LINK_LIBS ${LINK_LIBS}
+)

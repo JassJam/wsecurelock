@@ -1,5 +1,6 @@
 set(SOURCES
-        src/main.cpp
+        src/main.c
+        src/lockscreen_args.c
 )
 
 set(INCLUDE_DIRS
@@ -7,5 +8,5 @@ set(INCLUDE_DIRS
 )
 
 set(HEADERS
-        include/hello_world.hpp
+        include/lockscreen_args.h
 )
