@@ -1,4 +1,4 @@
-#include "lockscreen_args.h"
+#include "screen_locker/lockscreen_args.h"
 
 #include <string.h>
 #include <unistd.h>
@@ -19,13 +19,13 @@ typedef enum
     LS_ARGV_PATH = 2,
 } lockscreen_args_cli_args;
 
-static int usage(const char** argv)
+static int usage(char** argv)
 {
     fprintf(stderr, "usage: %s [-i image.(png|jpg)] [-c RRGGBB]\n", argv[0]);
     return 1;
 }
 
-lockscreen_args parse_from_vargs(const char** argv, int argc)
+lockscreen_args parse_from_vargs(char** argv, int argc)
 {
     lockscreen_args args = { .type = LOCKSCREEN_ARG_FLAT, .flat = { .color = 0 } };
 
@@ -48,8 +48,10 @@ lockscreen_args parse_from_vargs(const char** argv, int argc)
             usage(argv);
         }
 
-        args.image.image_source =
-            (const char*) stbi_load(path, &args.image.width, &args.image.height, NULL, 4);
+        int w, h = 0;
+        args.image.data   = (uint8_t*) stbi_load(path, &w, &h, NULL, 4);
+        args.image.width  = w;
+        args.image.height = h;
     }
     else if (strcmp("-c", type) == 0)
     {

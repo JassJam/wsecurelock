@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stdint.h>
+
 typedef enum
 {
     LOCKSCREEN_ARG_FLAT,
@@ -8,9 +10,9 @@ typedef enum
 
 typedef struct
 {
-    const char* image_source;
-    int width;
-    int height;
+    uint8_t* data;
+    uint32_t width;
+    uint32_t height;
 } lockscreen_args_image;
 
 typedef struct
@@ -28,4 +30,4 @@ typedef struct lockscreen_args
     };
 } lockscreen_args;
 
-lockscreen_args parse_from_vargs(const char** argv, int argc);
+lockscreen_args parse_from_vargs(char** argv, int argc);
