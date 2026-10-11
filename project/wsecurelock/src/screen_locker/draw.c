@@ -185,7 +185,7 @@ static void screen_locker_draw_pixels(const screen_locker* sl,
     static const int radius = 7, pitch = 26;
     static const int char_width = 24, default_char_count = 20;
 
-    const int pw_size    = password_count_chars(&sl->pw);
+    const int pw_size    = password_count_chars(&sl->user);
     const int char_count = ((pw_size > default_char_count) ? pw_size : default_char_count) + 4;
 
     const int bw = char_count * char_width, bh = 64;

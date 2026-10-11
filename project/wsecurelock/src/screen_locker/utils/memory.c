@@ -1,8 +1,24 @@
 #define _GNU_SOURCE
 #include "memory.h"
 
+#include <string.h>
 #include <unistd.h>
 #include <sys/mman.h>
+
+void sl_memory_zero(void* data, size_t size)
+{
+    explicit_bzero(data, size);
+}
+
+void sl_memory_lock(void* data, size_t size)
+{
+    mlock(data, size);
+}
+
+void sl_memory_unlock(void* data, size_t size)
+{
+    munlock(data, size);
+}
 
 int sl_memory_memfile_create(const char* name, size_t size)
 {

@@ -3,6 +3,7 @@
 #include "registry/session.h"
 #include "registry/wayland.h"
 #include "screen_locker/logger.h"
+#include "utils/memory.h"
 
 #include <stdio.h>
 #include <unistd.h>
@@ -22,7 +23,7 @@ static bool sl_init_user(screen_locker* sl)
         return false;
     }
 
-    snprintf(sl->user, sizeof(sl->user), "%s", pw->pw_name);
+    snprintf(sl->user.user_name, sizeof(sl->user.user_name), "%s", pw->pw_name);
     return true;
 }
 
@@ -54,7 +55,9 @@ bool screen_locker_init(const lockscreen_args* args, screen_locker* sl)
         return false;
     }
 
-    memset(sl, 0, sizeof(*sl));
+    sl_memory_lock(sl, sizeof(*sl));
+    sl_memory_zero(sl, sizeof(*sl));
+
     if (!sl_init_user(sl))
     {
         sl_print_error("cannot determine user");
@@ -87,4 +90,7 @@ void screen_locker_destroy(screen_locker* sl)
     {
         sl_unlock_session(sl);
     }
+
+    sl_memory_zero(sl, sizeof(*sl));
+    sl_memory_lock(sl, sizeof(*sl));
 }

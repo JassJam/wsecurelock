@@ -78,12 +78,13 @@ static void sl_on_wl_kb_key(void*               user_data,
 
     const xkb_keycode_t code = key + 8;
     const xkb_keysym_t  sym  = xkb_state_key_get_one_sym(sl->kb_state, code);
+    user_t*             user = &sl->user;
 
     switch (sym)
     {
     case XKB_KEY_Return:
     case XKB_KEY_KP_Enter:
-        if (password_is_empty(&sl->pw))
+        if (password_is_empty(user))
         {
             return;
         }
@@ -91,10 +92,10 @@ static void sl_on_wl_kb_key(void*               user_data,
         sl->ui.state = SL_UI_VERIFY;
         screen_locker_redraw_all(sl);
         {
-            if (password_authenticate(&sl->pw))
+            if (password_authenticate(user))
             {
                 sl->ui.state = SL_UI_UNLOCKED;
-                password_reset(&sl->pw);
+                password_reset(user);
             }
             else
             {
@@ -103,15 +104,15 @@ static void sl_on_wl_kb_key(void*               user_data,
             }
         }
         return;
-    case XKB_KEY_BackSpace: password_pop(&sl->pw); break;
-    case XKB_KEY_Escape   : password_reset(&sl->pw); break;
+    case XKB_KEY_BackSpace: password_pop(user); break;
+    case XKB_KEY_Escape   : password_reset(user); break;
     default:
     {
         char buf[8];
         int  n = xkb_state_key_get_utf8(sl->kb_state, code, buf, sizeof buf);
         if (n > 0 && !iscntrl((unsigned char) buf[0]))
         {
-            password_append(&sl->pw, buf, n);
+            password_append(user, buf, n);
         }
         else
         {
@@ -120,7 +121,8 @@ static void sl_on_wl_kb_key(void*               user_data,
     }
     }
 
-    sl->ui.state = sl->pw.length ? SL_UI_TYPING : SL_UI_IDLE;
+    const int pw_size = password_count_chars(&sl->user);
+    sl->ui.state      = (pw_size > 0) ? SL_UI_TYPING : SL_UI_IDLE;
     screen_locker_redraw_all(sl);
 }
 
@@ -167,4 +169,3 @@ void sl_registry_add_keyboard_listeners(screen_locker* sl)
 
     wl_keyboard_add_listener(sl->keyboard, &listeners, sl);
 }
-

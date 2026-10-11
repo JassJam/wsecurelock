@@ -1,9 +1,10 @@
 set(SOURCES
         src/main.c
 
+        src/screen_locker/auth.c
         src/screen_locker/lockscreen_args.c
         src/screen_locker/screen_locker.c
-        src/screen_locker/password.c
+        src/screen_locker/user.c
         src/screen_locker/draw.c
 
         src/screen_locker/registry/keyboard.h
@@ -28,9 +29,11 @@ set(INCLUDE_DIRS
 )
 
 set(HEADERS
+        include/screen_locker/auth.h
+        include/screen_locker/env.h
         include/screen_locker/lockscreen_args.h
         include/screen_locker/screen_locker.h
-        include/screen_locker/password.h
+        include/screen_locker/user.h
         include/screen_locker/ui.h
         include/screen_locker/draw.h
         include/screen_locker/logger.h

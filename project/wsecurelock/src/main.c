@@ -1,5 +1,8 @@
+#include "screen_locker/auth.h"
 #include "screen_locker/lockscreen_args.h"
 #include "screen_locker/screen_locker.h"
+
+#include <stdio.h>
 
 int main(int argc, char** argv)
 {

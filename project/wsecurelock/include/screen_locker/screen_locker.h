@@ -1,15 +1,14 @@
 #pragma once
 
 #include "lockscreen_args.h"
-#include "password.h"
+#include "user.h"
 #include "ui.h"
 
 #include <stdbool.h>
 
 typedef struct screen_locker
 {
-    char             user[64];
-    password_t       pw;
+    user_t           user;
     screen_locker_ui ui;
 
     struct wl_display*  display;

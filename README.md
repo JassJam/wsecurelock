@@ -3,8 +3,6 @@
 WSecureLock is an wayland screen lock utility designed to be simple, inspired by
 [XSecureLock](https://github.com/google/xsecurelock).
 
-In XSecureLock, security is achieved using a modular design, for extensible utilities.
-
 # Requirements
 
 The minimum dependencies:
@@ -14,7 +12,6 @@ The minimum dependencies:
 * ninja
 * git
 * clang or gcc
-
 * cacert
 * wayland
 * wayland-scanner
